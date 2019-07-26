@@ -5,7 +5,7 @@
 
     <groupId>com.stylefeng.guns</groupId>
     <artifactId>guns-gateway</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>guns-gateway</name>
@@ -40,6 +40,10 @@
         <dependency>
             <groupId>com.stylefeng</groupId>
             <artifactId>guns-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.stylefeng</groupId>
+            <artifactId>guns-api</artifactId>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
