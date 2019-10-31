@@ -1,6 +1,7 @@
 package com.stylefeng.guns.rest.modular.user;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.api.user.UserApi;
 import com.stylefeng.guns.api.user.UserInfoModel;
 import com.stylefeng.guns.api.user.UserModel;
@@ -12,15 +13,25 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Service(interfaceClass = UserApi.class)
-public class UserServiceImpl implements UserApi{
+public class UserServiceImpl implements UserApi {
 
     @Autowired
     private MoocUserTMapper moocUserTMapper;
 
     @Override
     public int login(String username, String password) {
-
-        return 1;
+        //根据登录账号获取数据库信息
+        MoocUserT moocUserT = new MoocUserT();
+        moocUserT.setUserName(username);
+        MoocUserT result = moocUserTMapper.selectOne(moocUserT);
+        //获取到的结果，与加密以后的密码进行匹配
+        if (result != null && result.getUuid() > 0) {
+            String md5Password = MD5Util.encrypt(password);
+            if (result.getUserPwd().equals(md5Password)) {
+                return result.getUuid();
+            }
+        }
+        return 0;
     }
 
     @Override
@@ -33,7 +44,7 @@ public class UserServiceImpl implements UserApi{
         moocUserT.setUserPhone(userModel.getPhone());
 
         Integer insert = moocUserTMapper.insert(moocUserT);
-        if(insert > 0){
+        if (insert > 0) {
             return true;
         }
         return false;
@@ -41,7 +52,14 @@ public class UserServiceImpl implements UserApi{
 
     @Override
     public boolean checkUsername(String username) {
-        return false;
+        EntityWrapper<MoocUserT> entityWrapper = new EntityWrapper<>();
+        entityWrapper.eq("user_name", username);
+        Integer result = moocUserTMapper.selectCount(entityWrapper);
+        if (result != null && result > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     @Override
