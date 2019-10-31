@@ -62,9 +62,25 @@ public class UserServiceImpl implements UserApi {
         }
     }
 
+    private UserInfoModel do2UserInfo(MoocUserT moocUserT) {
+        UserInfoModel userInfoModel = new UserInfoModel();
+        userInfoModel.setUsername(moocUserT.getUserName());
+        userInfoModel.setUpdateTime(moocUserT.getUpdateTime().getTime());
+        userInfoModel.setSex(moocUserT.getUserSex());
+        userInfoModel.setPhone(moocUserT.getUserPhone());
+        userInfoModel.setNickname(moocUserT.getNickName());
+        userInfoModel.setLifeState("" + moocUserT.getLifeState());
+        userInfoModel.setHeadAddress(moocUserT.getAddress());
+        userInfoModel.setEmail(moocUserT.getEmail());
+        userInfoModel.setBirthday(moocUserT.getBirthday());
+        userInfoModel.setBiography(moocUserT.getBiography());
+        return userInfoModel;
+    }
+
     @Override
     public UserInfoModel getUserInfo(int uuid) {
-        return null;
+        MoocUserT moocUserT = moocUserTMapper.selectById(uuid);
+        return this.do2UserInfo(moocUserT);
     }
 
     @Override
