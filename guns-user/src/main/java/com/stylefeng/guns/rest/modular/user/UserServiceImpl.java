@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@Service(interfaceClass = UserApi.class)
+@Service(interfaceClass = UserApi.class,loadbalance = "roundrobin")
 public class UserServiceImpl implements UserApi {
 
     @Autowired

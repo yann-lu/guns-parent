@@ -3,11 +3,13 @@
  */
 package com.stylefeng.guns.api.user;
 
+import java.io.Serializable;
+
 /**
  * @author 陆炎
  * @version : UserInfoModel.java, v0.1 2019/10/27 陆炎 Exp $$
  */
-public class UserInfoModel {
+public class UserInfoModel implements Serializable {
     private Integer uuid;
     private String username;
     private String nickname;
