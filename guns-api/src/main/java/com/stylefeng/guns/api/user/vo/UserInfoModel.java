@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2019-2019 All Rights Reserved.
  */
-package com.stylefeng.guns.api.user;
+package com.stylefeng.guns.api.user.vo;
 
 import java.io.Serializable;
 
