@@ -13,8 +13,8 @@ import java.io.Serializable;
  * 用户表
  * </p>
  *
- * @author stylefeng
- * @since 2019-10-27
+ * @author jiangzh
+ * @since 2018-08-02
  */
 @TableName("mooc_user_t")
 public class MoocUserT extends Model<MoocUserT> {
@@ -69,14 +69,15 @@ public class MoocUserT extends Model<MoocUserT> {
     @TableField("head_url")
     private String headUrl;
     /**
-     * 个人介绍
-     */
-    private String biography;
-    /**
-     * 生活状态 0-单身，1-热恋中，2-已婚，3-为人父母
+     * 生活状态
      */
     @TableField("life_state")
     private Integer lifeState;
+    /**
+     * 生活状态
+     */
+    @TableField("biography")
+    private String biography;
     /**
      * 创建时间
      */
@@ -88,6 +89,22 @@ public class MoocUserT extends Model<MoocUserT> {
     @TableField("update_time")
     private Date updateTime;
 
+
+    public String getBiography() {
+        return biography;
+    }
+
+    public void setBiography(String biography) {
+        this.biography = biography;
+    }
+
+    public Integer getLifeState() {
+        return lifeState;
+    }
+
+    public void setLifeState(Integer lifeState) {
+        this.lifeState = lifeState;
+    }
 
     public Integer getUuid() {
         return uuid;
@@ -169,22 +186,6 @@ public class MoocUserT extends Model<MoocUserT> {
         this.headUrl = headUrl;
     }
 
-    public String getBiography() {
-        return biography;
-    }
-
-    public void setBiography(String biography) {
-        this.biography = biography;
-    }
-
-    public Integer getLifeState() {
-        return lifeState;
-    }
-
-    public void setLifeState(Integer lifeState) {
-        this.lifeState = lifeState;
-    }
-
     public Date getBeginTime() {
         return beginTime;
     }
@@ -219,8 +220,6 @@ public class MoocUserT extends Model<MoocUserT> {
         ", userPhone=" + userPhone +
         ", address=" + address +
         ", headUrl=" + headUrl +
-        ", biography=" + biography +
-        ", lifeState=" + lifeState +
         ", beginTime=" + beginTime +
         ", updateTime=" + updateTime +
         "}";

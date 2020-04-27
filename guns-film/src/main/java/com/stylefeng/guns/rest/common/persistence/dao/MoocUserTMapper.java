@@ -8,8 +8,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * 用户表 Mapper 接口
  * </p>
  *
- * @author stylefeng
- * @since 2019-10-27
+ * @author jiangzh
+ * @since 2018-08-02
  */
 public interface MoocUserTMapper extends BaseMapper<MoocUserT> {
 
