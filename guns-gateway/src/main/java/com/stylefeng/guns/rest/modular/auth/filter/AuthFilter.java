@@ -41,11 +41,11 @@ public class AuthFilter extends OncePerRequestFilter {
             return;
         }
 
-        //配置忽略列表
+        // 配置忽略列表
         String ignoreUrl = jwtProperties.getIgnoreUrl();
         String[] ignoreUrls = ignoreUrl.split(",");
-        for (int i = 0; i < ignoreUrls.length; i++) {
-            if(request.getServletPath().equals(ignoreUrls[i])){
+        for(int i=0;i<ignoreUrls.length;i++){
+            if(request.getServletPath().startsWith(ignoreUrls[i])){
                 chain.doFilter(request, response);
                 return;
             }
